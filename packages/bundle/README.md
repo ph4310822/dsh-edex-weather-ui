@@ -1,45 +1,45 @@
-# @danielng23/dsh-edex-ui
+# @danielng23/dsh-edex-weather-ui
 
-**DeepSeek Harness eDEX-UI shell plugin** — a terminal-inspired overlay for the
-DSH web GUI. Adds a classic eDEX-UI layout: system telemetry left bar, world-map
-right bar, filesystem browser, and a terminal-styled composer input — all wrapped
-around the original UI.
+**WEATHER** — a windy.com wind-map command center as a terminal shell: a
+DeepSeek Harness eDEX-UI theme variant built from a vision analysis of
+[windy.com](https://www.windy.com/). Windy's translucent dark-chrome panels,
+amber/gold selection language, and animated wind field, re-imagined as a
+terminal overlay around the original DSH UI.
 
-![dsh-edex-ui screenshot](screenshot.png)
+![dsh-edex-weather-ui screenshot](../../screenshot.png)
 
 ## Features
 
-- **Left bar** — system overview panel: CPU, memory, swap, processes, platform
-  info, and thermal/power state, with per-core CPU sparklines
-- **Right bar** — network status + encom-globe world view with endpoint markers
-  and spline links, plus a dual up/down traffic chart with grid
-- **Bottom-left** — filesystem browser: directory listing, file preview, storage
-  bar, with folder/file SVG icons in the theme green
-- **Bottom-right** — file preview pane (text, code, images)
-- **Terminal-styled composer** — flattened input capsule, green block caret, and
-  a `~/<workspace>` path prompt at the left edge of the input area
-- **Workspace-follow** — the dir panel and prompt track the active conversation's
-  workspace; switching sessions navigates both the filesystem browser and the
-  prompt
-- **Green-on-black skin** — token overrides recolour the entire original UI to
-  terminal green, without touching the user's theme preference
+- **WIND MAP (featured)** — canvas wind-particle field over the navy pressure
+  gradient, kt color-scale legend, live LINK/PING readout, mini forecast
+  timeline (play button + red triangle, amber HH:MM badge, day ticks)
+- **Left bar** — CURRENT CONDITIONS (big thermal readout + forecast chips),
+  ATMOSPHERE MODELS (ECMWF/GFS/ICON chips over live per-core sparklines),
+  STATION OBSERVATIONS (live process table as station rows + loadavg)
+- **Right bar** — MAP LAYERS pill rail (WIND active amber), the featured WIND
+  MAP, and the WIND PROFILE kt scale over the live throughput trace
+- **Bottom strip** — DIR filesystem browser, PREVIEW/editor, real host TERMINAL
+- **Center workspace** — the original DSH UI framed by a chrome border + the
+  `DSH WORKSPACE` title strip on the #4d4d4e surface; never occluded
+- **Workspace chrome** — sidebar, composer (20px pill input, amber caret), and
+  workspace tree retheme to near-white-on-chrome with amber selection fills
 
 ## Installation
 
 From the harness checkout:
 
 ```sh
-pnpm dsh plugin --profile web add @danielng23/dsh-edex-ui
+DSH_HOME=/tmp/your-dsh-home pnpm dsh plugin --profile web add @danielng23/dsh-edex-weather-ui
 ```
 
 ## Packages
 
 | Package | Host/Client | Description |
 |---|---|---|
-| `@danielng23/dsh-edex-ui` | — | Installable bundle (`cordis.patch.yml`) |
-| `@danielng23/dsh-client-ui-edex` | client | The eDEX shell frame and all panels |
-| `@danielng23/dsh-client-ui-theme-terminal` | client | Appearance → Terminal theme row |
-| `@danielng23/dsh-host-system-metrics` | host | System telemetry RPC endpoints |
+| `@danielng23/dsh-edex-weather-ui` | — | Installable bundle (`cordis.patch.yml`) |
+| `@danielng23/dsh-weather-client-ui-edex` | client | The weather shell frame and all widgets |
+| `@danielng23/dsh-weather-client-ui-theme-terminal` | client | Appearance → weather theme row |
+| `@danielng23/dsh-weather-host-system-metrics` | host | Station telemetry RPC endpoints |
 
 ## License
 
