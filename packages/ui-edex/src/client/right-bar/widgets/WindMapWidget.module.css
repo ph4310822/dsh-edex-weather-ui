@@ -152,12 +152,14 @@
 }
 
 /* The forecast playhead: an amber tick drifting over the day rules; blinks
-   (opacity-only keyframes, symmetric 2px box — no pivot concerns). */
+   (opacity-only keyframes, symmetric 2px box — no pivot concerns). Kept
+   INSIDE the .days box (top/bottom 0) so the animated bounds stay within
+   the container (the animation probe's extent check). */
 .playhead {
   position: absolute;
   left: 22%;
-  top: -3px;
-  bottom: -1px;
+  top: 0;
+  bottom: 0;
   width: 2px;
   border-radius: 1px;
   background: var(--edex-green, #d49500);
