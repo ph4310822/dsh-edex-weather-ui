@@ -118,7 +118,12 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: var(--edex-chrome);
+  /* NO background here: the workspace (the reshaped layout frame) sits
+     UNDER this overlay, and it already carries the chrome surface via its
+     own background tokens (#4d4d4e). An opaque fill here would paint over
+     the original UI (the XRY failure mode). The center chrome is the 1px
+     border + the title strip only. */
+  background: transparent;
   border: 1px solid var(--edex-border);
   border-radius: 10px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
