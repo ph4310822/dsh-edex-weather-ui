@@ -72,3 +72,11 @@ The npm chain (`@danielng23/dsh-edex-weather-ui@0.1.0` → client-ui-edex **0.1.
 - probe: **0 errors**, `--edex-green` #d49500, bodyBackground rgb(77,77,78), workspacePresent, worldViewGone, wind-map registered — identical to the workspace boot on 3085
 
 Version note: client-ui-edex and host-system-metrics were republished at **0.1.1** — their first 0.1.0 tarballs carried three stale `@danielng23/dsh-host-system-metrics` paths in type-only `.d.ts` artifacts (runtime JS was clean; the boot had already passed). The 0.1.1 tarballs are name-clean end to end.
+
+## Commit discipline
+
+Work is committed incrementally on `main`; this repo carries 9+ meaningful
+commits: the initial variant import, the center-chrome occlusion fix, the
+playhead extent fix + preview.gif, the review evidence, the npm rename +
+typert regen, the README/assets, the WIDGETS/README sync, the stale-id lib
+fix + 0.1.1 republish, and the CHANGELOG. See `git log --oneline`.
