@@ -1,0 +1,127 @@
+/* Atmosphere models widget (WEATHER): the segmented model-selector chips
+   (active amber fill with dark text per the reference), per-model run
+   sparklines in the map cyan, and the memory/swap block bars. */
+
+/* The reference's forecast-model chips: active = amber fill + dark text,
+   resting = inset chrome with light text. */
+.modelRow {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.chip,
+.chipActive {
+  flex: 1;
+  text-align: center;
+  padding: 2px 4px;
+  border-radius: 8px;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip {
+  background: var(--edex-panel-2);
+  border: 1px solid var(--edex-border);
+  color: var(--edex-text);
+}
+
+.chipActive {
+  background: var(--edex-green);
+  border: 1px solid var(--edex-green);
+  color: #000722;
+  font-weight: 600;
+}
+
+.cpuPairs {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+
+.cpuPair {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cpuLabel {
+  width: 44px;
+  color: var(--edex-dim);
+  flex: none;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.cpuPct {
+  width: 42px;
+  text-align: right;
+  flex: none;
+}
+
+.spark {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  color: var(--edex-cyan);
+}
+
+.metricRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
+.metricKey {
+  color: var(--edex-dim);
+}
+
+.memBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.memLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--edex-dim);
+}
+
+.memPct {
+  color: var(--edex-green);
+}
+
+.blockBar {
+  display: flex;
+  gap: 2px;
+  height: 10px;
+}
+
+.blockOn,
+.blockOff {
+  flex: 1;
+}
+
+.blockOn {
+  background: var(--edex-green);
+}
+
+.blockOff {
+  background: var(--edex-border);
+  opacity: 0.4;
+}

@@ -1,0 +1,66 @@
+/* Wind profile widget (WEATHER): live rate header, kt legend scale, dual
+   trace (download = map cyan, upload = amber) over the light grid. */
+
+.trafficHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.key {
+  color: var(--edex-dim);
+  letter-spacing: 1px;
+}
+
+/* The kt scale bar + ticks (measured legend stops). */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+
+.legendBar {
+  height: 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.legendTicks {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 8px;
+  color: var(--edex-dim);
+  letter-spacing: 0.5px;
+}
+
+.legendUnit {
+  color: var(--edex-text);
+}
+
+/* The chart fills the widget's leftover height (the fill section flex-fills
+   the bar); the SVG fills the chart wrapper, with a 1:1 viewBox measured by
+   ResizeObserver. */
+.trafficChart {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.traffic {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--edex-text);
+}
+
+/* The download trace rides the map cyan, the upload trace the amber. */
+.trafficDown {
+  stroke: var(--edex-cyan);
+}
+
+.trafficUp {
+  stroke: var(--edex-amber);
+}

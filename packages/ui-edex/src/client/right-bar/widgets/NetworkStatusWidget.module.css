@@ -1,0 +1,92 @@
+/* Map layers widget (WEATHER): the layer rail — pill rows with circular
+   layer dots; the active layer (Wind) carries the amber fill with dark text
+   per the reference's selection language. The link spec lines ride beneath. */
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+
+.layer,
+.layerActive {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 8px 2px 6px;
+  border-radius: 12px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.layer {
+  background: var(--edex-panel-2);
+  border: 1px solid color-mix(in srgb, var(--edex-border) 55%, transparent);
+  color: var(--edex-text);
+}
+
+.layerActive {
+  background: var(--edex-green);
+  border: 1px solid var(--edex-green);
+  color: #000722;
+  font-weight: 600;
+}
+
+.layerDot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.layerName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.layerOn {
+  flex: none;
+  font-size: 8px;
+  letter-spacing: 1px;
+  opacity: 0.75;
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.specLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.specLine > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--edex-text);
+}
+
+.key {
+  color: var(--edex-dim);
+  letter-spacing: 1px;
+}
+
+.linkUp {
+  color: var(--edex-map-green);
+}
+
+.linkDown {
+  color: var(--edex-red);
+}

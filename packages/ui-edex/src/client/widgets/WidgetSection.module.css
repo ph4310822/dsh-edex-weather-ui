@@ -1,0 +1,69 @@
+/* Shared widget section chrome — WEATHER (windy.com): each widget is one of
+   Windy's floating translucent map-app panels: dark chrome fill (#4d4d4e), a
+   1px low-contrast hairline (#6a6a6c), 10px rounded corners, and a soft black
+   drop shadow instead of any glow. Cards float on the deep navy canvas with
+   small gaps (4px vertical / 6px side margins), like the reference's
+   free-floating panels. The center slot is reset to fully transparent: it
+   hosts the ORIGINAL DSH UI, which is framed by the shell's own center chrome
+   (EdexShell.module.css .centerWidget/.centerTitle) and must never be painted
+   over by the card treatment. */
+
+.section {
+  padding: 10px 12px;
+  margin: 4px 6px;
+  background: var(--edex-chrome, #4d4d4e);
+  border: 1px solid var(--edex-border, #6a6a6c);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.title {
+  color: var(--edex-text, #f8f8f8);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+/* Flex-fill the bar's leftover height (screen − other sections). */
+.fill {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Tight padding for full-bleed widgets (the wind map). */
+.compact {
+  padding: 2px 4px;
+}
+
+/* Zero the chrome padding so the widget body owns all inner spacing
+   (full-bleed bottom widgets like the file list and terminal). */
+.bleed {
+  padding: 0;
+}
+
+/* Keep the section heading inset from the card edges when the section body
+   is compact (the wind map) or bleed (bottom widgets). The title padding
+   compensates the section's own padding so every title text lands at the
+   same inset as the default sections (10px top, 12px sides):
+   compact section = 2px/4px → title 8px/8px; bleed section = 0 → 10px/12px. */
+.compact .title {
+  padding: 8px 8px 0;
+}
+
+.bleed .title {
+  padding: 10px 12px 0;
+}
+
+/* MANDATORY center reset: the center slot hosts the original DSH workspace —
+   it must stay fully transparent (no fill, border, radius, margin, padding,
+   or shadow from the card chrome above). The center region's own chrome lives
+   on .centerWidget/.centerTitle in EdexShell.module.css. */
+.section[data-widget='center'] {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}

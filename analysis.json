@@ -1,0 +1,146 @@
+{
+  "metadata": {
+    "filename": "weather-windy-ops (web-discovered)",
+    "url": "https://www.windy.com/",
+    "source": "vision",
+    "capturedAt": "2026-09-09",
+    "referenceShot": "reference-shot.png",
+    "domFacts": {
+      "title": "Windy: Wind map & weather forecast",
+      "hasNav": true,
+      "hasSidebar": false,
+      "cardCount": 24,
+      "gauges": true,
+      "chartCount": 2,
+      "hasParticle": true,
+      "cssCustomProperties": ["--color-ui-background", "--color-ui-primary", "--color-ui-secondary", "--color-border", "--color-ok", "--color-error", "--color-red", "--color-orange-light", "--color-gray-dark"]
+    }
+  },
+  "theme": {
+    "background": "#000722",
+    "panelTone": "#4d4d4e",
+    "primaryAccent": "#d49500",
+    "secondaryAccent": "#dca82f",
+    "textPrimary": "#f8f8f8",
+    "textSecondary": "#a8a8a8",
+    "semanticColors": {
+      "success": "#53a554",
+      "warn": "#d49500",
+      "error": "#9d0300",
+      "info": "#536bae",
+      "brandRed": "#a71c20",
+      "cyan": "#4a94a2"
+    },
+    "glowColor": "#d49500",
+    "notes": "Windy is a full-viewport meteorological map: deep navy-indigo map canvas (#162c4f shadow tones, #041c49 indigo, near-black navy #000722 in shaded panels) under translucent dark-gray chrome panels (#4d4d4e mode, #4f5152 bottom bar, #4c4d4d cluster). UI accents are warm: amber/gold #d49500 (Go Premium pill 65.1%, time badge 75.4%, active model ECMWF fill #c6931c, selected dates), alert/brand red #9d0300 (play triangle, hamburger) and #a71c20 (brand circle). The map itself is a data-driven cool field: blues #3a66a1/#536bae, cyans #4a94a2, greens #47a447/#53a554, warm yellows/olives toward red. Little to no decorative glow — depth comes from translucency and soft black drop shadows."
+  },
+  "borderFeatures": {
+    "frame": {
+      "presence": "none",
+      "style": "solid",
+      "widthPx": 0,
+      "color": "#4d4d4e",
+      "cornerRadiusPx": 0,
+      "glow": null,
+      "notes": "No outer application frame — the map fills the viewport and free-floating translucent panels anchor to its edges. Depth is soft black drop shadow, not borders or glow."
+    },
+    "cards": {
+      "presence": "full",
+      "style": "solid",
+      "widthPx": 1,
+      "color": "#6a6a6c",
+      "cornerRadiusPx": 10,
+      "glow": null,
+      "notes": "Cards/widgets are closed rounded surfaces: grouped widgets and forecast panels 8–12px radius (10px used), compact labels/pills 18–22px, icon buttons fully circular (measured red button radius ≈21px). Hairline low-contrast chrome edge (#6a6a6c vision-estimated thin border; panels are otherwise borderless translucent gray) + soft black drop shadow instead of any glow."
+    },
+    "dividers": {
+      "presence": "partial",
+      "style": "solid",
+      "widthPx": 1,
+      "color": "#616163",
+      "cornerRadiusPx": 0,
+      "glow": null,
+      "notes": "Timeline day cells separated by faint 1px vertical rules (BMP rule columns detected at ~+18 luminance over the #4d4d4d strip); control cluster uses separator bars between grouped buttons."
+    },
+    "inputs": {
+      "presence": "full",
+      "style": "solid",
+      "widthPx": 1,
+      "color": "#6a6a6c",
+      "cornerRadiusPx": 20,
+      "glow": null,
+      "notes": "Location search field is a pill (measured box 12,10–393,44, radius ≈20px) and is WHITE with dark text on Windy — a light-field divergence; the terminal composer keeps the dark chrome well but adopts the pill radius."
+    },
+    "activeIndicators": {
+      "presence": "partial",
+      "style": "solid",
+      "widthPx": 0,
+      "color": "#d49500",
+      "cornerRadiusPx": 18,
+      "glow": null,
+      "notes": "Active state is a FILL, not a bar: selected layer (Wind) gets a brighter chrome fill, active model (ECMWF 9km) gets the amber #d49500 fill with dark text, selected timeline date gets amber text, current time gets the amber badge. No left accent bars anywhere."
+    }
+  },
+  "layout": {
+    "regions": [
+      {"name": "mapCanvas", "topBar": false, "leftBar": false, "rightBar": false, "bottomBar": false, "cards": false, "gauges": false, "radar": false, "notes": "Full-viewport dynamic weather map — cool blue/cyan/green data field with pale cyan-white wind particle streamlines; in the terminal adaptation the center workspace follows the dark chrome surfaces instead of a live map."},
+      {"name": "topBar", "topBar": true, "notes": "Left: white search pill + forecast panel + notification card. Center: red brand circle #a71c20 + Windy.com wordmark. Right: amber Go Premium pill, Login pill, Menu label, red circular hamburger #9d0300."},
+      {"name": "leftBar", "leftBar": true, "notes": "Current-conditions/forecast panel (large thin-white 28°, daily columns, amber intensity strip) above a notification article card."},
+      {"name": "rightBar", "rightBar": true, "notes": "Layer rail (Weather radar/Satellite/Wind/Rain thunder/Temperature/…, Wind selected) over the map; below it the control cluster (+/3D/info/fullscreen + toolbar), model selector (ECMWF 9km active amber, GFS 22km, ICON 13km), and the kt color-scale legend."},
+      {"name": "bottomBar", "bottomBar": true, "notes": "Full-width dark timeline strip: white circular play button with red triangle, amber 8:00 time badge, scrubber, day cells with faint vertical rules, amber selected dates."},
+      {"name": "rightRailWidgets", "cards": true, "notes": "Segmented buttons, legend bar, toggles — all translucent chrome with pill/10px radii."}
+    ]
+  },
+  "keyElements": [
+    {"type": "map", "description": "Full-viewport wind/weather field, indigo-to-cyan-to-green data ramp with red/magenta extremes", "region": "mapCanvas"},
+    {"type": "particles", "description": "Pale cyan-white wind streamlines/particles curving over the whole map", "region": "mapCanvas"},
+    {"type": "legend", "description": "Horizontal color-scale legend (kt): blue → cyan → green → yellow/olive → amber → red → magenta → pale blue, labels 0/5/10/20/30/40/60", "region": "rightBottom"},
+    {"type": "timeline", "description": "Forecast timeline with white circular play button (red triangle), amber 8:00 badge, day cells Wed 9–, faint 1px rules", "region": "bottomBar"},
+    {"type": "modelSelector", "description": "Segmented ECMWF 9km / GFS 22km / ICON 13km / 2 more… selector, active amber fill", "region": "rightBottom"},
+    {"type": "layerRail", "description": "Right-aligned stack of layer pills with circular preview thumbnails; Wind emphasized", "region": "rightColumn"},
+    {"type": "forecast", "description": "Current 28° display + 4-day columns with weather glyphs, hi/lo, droplet values, amber intensity strip", "region": "leftTop"},
+    {"type": "stationReadouts", "description": "City temperature readouts (white name over temp) with dark outline shadows across the map", "region": "mapCanvas"},
+    {"type": "brand", "description": "Red circular logo #a71c20 with white wind glyph + wordmark; red #9d0300 circular hamburger", "region": "topBar"},
+    {"type": "notificationCard", "description": "Dark article card with thumbnail, headline, close X", "region": "leftTop"}
+  ],
+  "widgets": {
+    "reference": [
+      {"name": "SEARCH FIELD", "type": "inputs", "region": "topBar", "description": "White pill search with magnifier + locate icons"},
+      {"name": "CURRENT CONDITIONS FORECAST", "type": "gauges", "region": "leftTop", "description": "Large current temp, condition row, 4-day columns, amber intensity strip"},
+      {"name": "NOTIFICATION CARD", "type": "log", "region": "leftTop", "description": "Article card with thumbnail + headline + close"},
+      {"name": "LAYER RAIL", "type": "list", "region": "rightColumn", "description": "Weather radar/Satellite/Wind/Rain thunder/Temperature/… selectable rows with thumbnails; Wind selected"},
+      {"name": "MAP CONTROL CLUSTER", "type": "buttons", "region": "rightBottom", "description": "Zoom +/3D/info/fullscreen bar + secondary toolbar, separator groups"},
+      {"name": "MODEL SELECTOR", "type": "segmented", "region": "rightBottom", "description": "ECMWF 9km (active amber) / GFS 22km / ICON 13km / 2 more…"},
+      {"name": "COLOR LEGEND", "type": "scale", "region": "rightBottom", "description": "kt gradient scale bar 0–60"},
+      {"name": "FORECAST TIMELINE", "type": "timeline", "region": "bottomBar", "description": "Play control, amber time badge, day cells with rules"},
+      {"name": "WIND PARTICLE FIELD", "type": "map", "region": "mapCanvas", "description": "Animated wind streamline particles over the data field"},
+      {"name": "STATION OBSERVATIONS", "type": "readouts", "region": "mapCanvas", "description": "City name + temperature labels scattered over the map"},
+      {"name": "NAV PILLS", "type": "buttons", "region": "topBar", "description": "Go Premium amber pill, Login pill, red circular menu"}
+    ],
+    "matches": [
+      {"reference": "CURRENT CONDITIONS FORECAST", "slot": "info", "match": "high", "note": "info card becomes the current-conditions + 4-day forecast panel"},
+      {"reference": "MODEL SELECTOR", "slot": "cpu", "match": "partial", "note": "cpu gauges become atmosphere model panel: segmented ECMWF/GFS/ICON selector + resolution gauges"},
+      {"reference": "STATION OBSERVATIONS", "slot": "processes", "match": "partial", "note": "process list becomes city station rows (city, temp, wind kt)"},
+      {"reference": "LAYER RAIL", "slot": "network-status", "match": "partial", "note": "network status rows become selectable map-layer rows with live signal values"},
+      {"reference": "COLOR LEGEND", "slot": "traffic", "match": "partial", "note": "traffic throughput becomes wind profile: kt gradient scale + live area trace in legend colors"},
+      {"reference": "FORECAST TIMELINE", "slot": null, "match": null, "note": "no bottom slot may lose files/preview/terminal function — timeline language folds into the featured widget"},
+      {"reference": "SEARCH FIELD", "slot": null, "match": null, "note": "chrome language only (pill inputs)"},
+      {"reference": "NOTIFICATION CARD", "slot": null, "match": null, "note": "no slot; card language informs widget chrome"},
+      {"reference": "NAV PILLS", "slot": null, "match": null, "note": "chrome language only"}
+    ],
+    "featured": {
+      "reference": "WIND PARTICLE FIELD",
+      "name": "WIND MAP",
+      "slot": "globe",
+      "notes": "Windy's signature is the animated wind field itself — it replaces the WORLD VIEW globe: deep-navy canvas with drifting pale-cyan wind particles along a flow field, kt legend bar, and a mini forecast timeline (white play button with red triangle, amber time badge, day ticks)."
+    }
+  },
+  "measurements": {
+    "chromeSurfaces": {"forecastPanelLowSat": "#606060", "bottomBarLowSat": "#515151", "topLeftRegionMode": "#4d4d4e", "clusterMode": "#4c4d4d", "modelSelInactive": "#575755", "notifCardOverMap": "#415e8a", "searchFieldAvg": "#6b6d72"},
+    "accents": {"premiumPill": "#d49500", "timeBadge": "#d49500", "modelActive": "#c6931c", "redHamburger": "#9d0300", "brandCircle": "#a71c20", "playTriangle": "#9d0300"},
+    "legendStops": ["#6271b8", "#4a93a0", "#4ca24f", "#8f903d", "#a28245", "#8f4165", "#5e6aa0"],
+    "redButtonRadiusPx": 21,
+    "timelineRules": "1px vertical rules at +18 luminance over #4d4d4d",
+    "mapField": {"indigoShadow": "#041c49", "deepShadow": "#000722", "blue": "#3a66a1", "cyan": "#4a94a2", "green": "#47a447"}
+  }
+}

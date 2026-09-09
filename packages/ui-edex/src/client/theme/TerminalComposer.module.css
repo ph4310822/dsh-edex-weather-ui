@@ -1,0 +1,93 @@
+/* WEATHER composer overrides for the stock InputBar. The composer's DOM
+   carries stable data hooks (data-composer-card on the capsule,
+   data-input-scroll on the draft scrollport, data-phase on the textarea), so
+   these :global rules can retheme it without touching ui-conversation.
+
+   The reference's inputs are pill-shaped (the location search field is a 20px
+   radius pill) on the dark chrome; Windy's own search is WHITE — a light-field
+   divergence this terminal adaptation does not copy: the composer keeps the
+   dark chrome inset well (#3f3f41) with the amber caret/selected language and
+   adopts the pill radius.
+   Specificity note: the conversation surface loads lazily, so its stylesheet
+   can land AFTER this plugin's — every override doubles its attribute to win
+   the tie (e.g. [data-input-backdrop][data-input-backdrop] > .backdrop).
+   Text-layer contract: the backdrop carries the VISIBLE glyphs; the textarea
+   and the mirror must stay transparent (only the caret is the textarea's, the
+   mirror is the caret-reveal ruler). All three MUST share font metrics or the
+   caret drifts off the glyphs — the stock InputBar rule already applies the
+   same stack (chip cell first, then the app font) and the same inherited size
+   to all three, so dropping the mono override below keeps them aligned while
+   the input reads in the app's own font. */
+
+/* The weather palette must resolve inside the composer too: it lives outside
+   the shell frame, so define the vars on body. The browser half re-sets the
+   color vars inline from the Theme Color setting (inline wins this
+   stylesheet); these values are the default palette, so the input reads
+   correctly even before the scope publishes. The plugin's style tag is
+   removed on unload. */
+:global(body) {
+  --edex-font: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, Menlo, monospace;
+  --edex-green: #d49500;
+  --edex-dim: #c09226;
+  --edex-border: #6a6a6c;
+  --edex-panel-2: #4d4d4e;
+  --edex-amber: #dca82f;
+  --edex-red: #9d0300;
+  --edex-cyan: #4a94a2;
+  --edex-chrome: #4d4d4e;
+  --edex-divider: #616163;
+  --edex-text: #f8f8f8;
+}
+
+/* The composer capsule becomes one of Windy's floating chrome pills: dark
+   chrome well, 1px hairline, the reference's 20px input radius, soft shadow. */
+:global([data-composer-card][data-composer-card]) {
+  border-radius: 20px;
+  background: #3f3f41;
+  border: 1px solid var(--edex-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* The draft scrollport becomes the input line: a flex row with the injected
+   `~/<folder>` path prompt (flex: none) at the left and the text stack
+   (flex: 1) filling the rest — `/directory [user input]`. The prompt scrolls
+   with the input, like the reference's command-line style. */
+:global([data-input-scroll][data-input-scroll]) {
+  display: flex;
+  align-items: flex-start;
+  background: transparent;
+}
+
+/* The text-stack wrapper (.grow, the scrollport's other direct child) takes
+   the remaining width after the prompt; without this it sizes to the draft's
+   intrinsic text width and overflows the card. */
+:global([data-input-scroll][data-input-scroll] > :not([data-edex-path])) {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Input text size: pinned to 14px to match the terminal path prompt, so the
+   whole line reads as one line. The stock InputBar stack ('DshChipCell' first
+   for the U+FFFC placeholder advance, then the app font) stays; only the size
+   is overridden, identically on all three text layers so the caret and glyphs
+   keep sharing metrics. */
+:global(textarea[data-phase][data-phase]),
+:global([data-input-backdrop][data-input-backdrop]),
+:global([data-input-mirror][data-input-mirror]) {
+  font-size: 14px;
+}
+
+/* Only the backdrop layer gets the visible near-white glyphs (Windy's labels
+   read near-white on chrome); the textarea and mirror keep their transparent
+   color. */
+:global([data-input-backdrop][data-input-backdrop]) {
+  color: var(--edex-text);
+}
+
+:global(textarea[data-phase][data-phase]) {
+  background: transparent;
+  /* The amber caret: a thick block cursor where caret-shape is supported
+     (recent Chromium/Firefox), falling back to a solid amber caret. */
+  caret-shape: block;
+  caret-color: var(--edex-green);
+}

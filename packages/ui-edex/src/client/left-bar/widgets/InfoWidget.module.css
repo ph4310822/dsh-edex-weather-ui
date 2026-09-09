@@ -1,0 +1,108 @@
+/* Info widget (WEATHER): current-conditions panel — big thin temperature,
+   condition row, forecast chips with the amber intensity strip, and the
+   station spec lines. Windy's temperature readouts are thin white display
+   type; amber is reserved for the selection language (hi values, strip). */
+
+.nowRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* The large thin-white temperature (the reference's 28° display). */
+.temp {
+  font-size: 30px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  color: var(--edex-text);
+  line-height: 1;
+}
+
+.cond {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--edex-dim);
+}
+
+.condGlyph {
+  color: var(--edex-amber);
+}
+
+/* The 4-day forecast chips: day name, glyph, hi/lo, amber intensity strip. */
+.forecast {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.forecastDay {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 2px 3px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.forecastDayName {
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--edex-dim);
+}
+
+.forecastGlyph {
+  font-size: 11px;
+  color: var(--edex-text);
+}
+
+.forecastHi {
+  font-size: 9px;
+  color: var(--edex-green);
+}
+
+.forecastLo {
+  font-size: 9px;
+  color: var(--edex-dim);
+}
+
+/* The reference's amber intensity/selection strip under each column. */
+.forecastStrip {
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--edex-green);
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.specLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+.specLine > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--edex-text);
+}
+
+.specKey {
+  color: var(--edex-dim);
+  letter-spacing: 1px;
+}

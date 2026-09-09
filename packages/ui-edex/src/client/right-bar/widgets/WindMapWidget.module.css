@@ -1,0 +1,170 @@
+/* Wind map widget (WEATHER featured): the animated wind-field pane, kt
+   legend, and mini forecast timeline. The pane carries the reference's
+   pressure-field gradient (deep navy through indigo/teal) under the canvas;
+   accents come from the measured palette: pale cyan-white streamlines, the
+   kt gradient legend stops, amber time badge / active day, red play
+   triangle. The playhead blink is opacity-only (a symmetric small box, no
+   rotation — the pivot rule is trivially satisfied). */
+
+.pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 140px;
+  gap: 6px;
+}
+
+/* The pressure field underlay: layered radial blends of the measured map
+   tones (deep navy → indigo → teal → green) like the reference's data field. */
+.field {
+  position: relative;
+  flex: 1;
+  min-height: 96px;
+  border-radius: 6px;
+  overflow: hidden;
+  background:
+    radial-gradient(140% 90% at 18% 22%, rgba(83, 107, 174, 0.55) 0%, rgba(13, 44, 78, 0) 55%),
+    radial-gradient(120% 80% at 82% 30%, rgba(74, 148, 162, 0.5) 0%, rgba(13, 44, 78, 0) 60%),
+    radial-gradient(130% 90% at 30% 85%, rgba(82, 164, 79, 0.4) 0%, rgba(13, 44, 78, 0) 58%),
+    radial-gradient(110% 70% at 78% 88%, rgba(143, 65, 101, 0.28) 0%, rgba(13, 44, 78, 0) 55%),
+    linear-gradient(160deg, #0d2c4e 0%, #0a1f3a 55%, #081726 100%);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* Live link/ping readout pinned over the field's bottom edge (the globe's
+   endpoint readout slot — live data stays wired). */
+.live {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.liveKey {
+  color: var(--edex-dim);
+}
+
+.liveValue {
+  color: var(--edex-text);
+}
+
+/* The kt legend: gradient bar + tick labels (measured stops). */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 2px;
+}
+
+.legendBar {
+  height: 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.legendTicks {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 8px;
+  color: var(--edex-dim);
+  letter-spacing: 0.5px;
+}
+
+.legendUnit {
+  color: var(--edex-text);
+}
+
+/* The mini forecast timeline: white circular play button with the red
+   triangle, amber time badge, day ticks with 1px rules, blinking playhead. */
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 2px 0;
+}
+
+.playBtn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f8f8f8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* The red triangle: a CSS border wedge centered in the white button. */
+.playTri {
+  display: block;
+  width: 0;
+  height: 0;
+  margin-left: 1px;
+  border-style: solid;
+  border-width: 4px 0 4px 6.5px;
+  border-color: transparent transparent transparent #9d0300;
+}
+
+.badge {
+  flex: none;
+  padding: 1px 6px;
+  border-radius: 9px;
+  background: var(--edex-green, #d49500);
+  color: #000722;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* The day ticks: short labels above 1px vertical rules (the reference's
+   day-cell separators), the active day amber. */
+.days {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  color: var(--edex-dim);
+}
+
+.day,
+.dayActive {
+  padding-left: 5px;
+  border-left: 1px solid var(--edex-divider, #616163);
+}
+
+.dayActive {
+  color: var(--edex-green);
+}
+
+/* The forecast playhead: an amber tick drifting over the day rules; blinks
+   (opacity-only keyframes, symmetric 2px box — no pivot concerns). */
+.playhead {
+  position: absolute;
+  left: 22%;
+  top: -3px;
+  bottom: -1px;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--edex-green, #d49500);
+  animation: playhead-blink 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes playhead-blink {
+  from { opacity: 1; }
+  to { opacity: 0.25; }
+}
