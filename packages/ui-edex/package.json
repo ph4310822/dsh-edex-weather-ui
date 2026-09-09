@@ -1,7 +1,7 @@
 {
   "name": "@danielng23/dsh-weather-client-ui-edex",
   "description": "WEATHER: a windy.com wind-map command center as a terminal shell \u2014 amber/gold selection accents on dark chrome, animated wind-particle map, kt legend, forecast timeline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publishConfig": {
     "access": "public"
   },

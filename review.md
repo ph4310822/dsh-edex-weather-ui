@@ -63,3 +63,12 @@ SEARCH FIELD / NOTIFICATION CARD / NAV PILLS / MAP CONTROL CLUSTER: no slots —
 4. translucency: eDEX panels are opaque chrome over the deep-navy canvas rather than rgba-over-map (terminal context).
 
 **PASS** — tokens exact, border language exact, featured widget live, workspace visible, 0 errors, animation PASS.
+
+## Published-chain boot-verify (registry install)
+
+The npm chain (`@danielng23/dsh-edex-weather-ui@0.1.0` → client-ui-edex **0.1.1** → theme-terminal 0.1.0 → host-system-metrics **0.1.1**) was installed from registry.npmjs.org into a fresh DSH_HOME profile and booted on port 3086:
+
+- `lib/client.js` workspace↔registry **byte-identical** (sha256 3df9f047…); `typert.host.js` byte-identical (b66f2e2c…)
+- probe: **0 errors**, `--edex-green` #d49500, bodyBackground rgb(77,77,78), workspacePresent, worldViewGone, wind-map registered — identical to the workspace boot on 3085
+
+Version note: client-ui-edex and host-system-metrics were republished at **0.1.1** — their first 0.1.0 tarballs carried three stale `@danielng23/dsh-host-system-metrics` paths in type-only `.d.ts` artifacts (runtime JS was clean; the boot had already passed). The 0.1.1 tarballs are name-clean end to end.
