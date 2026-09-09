@@ -99,7 +99,7 @@ packages/ui-edex/src/client/
 │   ├── RightBar.module.css           # .panel only
 │   └── widgets/
 │       ├── NetworkStatusWidget.tsx + .module.css
-│       ├── GlobeWidget.tsx  + .module.css
+│       ├── WindMapWidget.tsx + .module.css
 │       └── TrafficWidget.tsx + .module.css
 │
 └── bottom-panel/
@@ -112,13 +112,15 @@ packages/ui-edex/src/client/
         └── TerminalWidget.tsx + .module.css
 ```
 
-The shell frame (`frame/EdexShell.tsx`) mounts the three bars plus an **empty
-top panel** — a full-width strip that overlays the shell's top edge above
-every other layer (see `.topPanel` in `frame/EdexShell.module.css`). The
-center region (the original UI) is also wrapped in the standard widget chrome
-via the `center` widget slot — `CENTER_SLOT` in `EdexShell.tsx` — with an
-empty title bar (like the info widget) and `bleed` padding, so the whole
-canvas participates in the same widget vocabulary.
+The shell frame (`frame/EdexShell.tsx`) mounts the three bars. The
+center region (the original UI) keeps the widget vocabulary but its chrome is
+deliberately minimal — via the `center` widget slot (`CENTER_SLOT` in
+`EdexShell.tsx`) the section resets to fully transparent (see the
+`.section[data-widget='center']` reset in `WidgetSection.module.css`), and the
+frame-level chrome in `EdexShell.module.css` adds only the 1px hairline border
++ the `DSH WORKSPACE` title strip. **No opaque background** may be painted
+there: the workspace sits UNDER the shell overlay and already carries the
+chrome surface through its own tokens.
 
 ## Creating a new widget
 
