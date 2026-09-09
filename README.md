@@ -1,74 +1,84 @@
-# dsh-edex-ui
+# dsh-edex-weather-ui
 
-**DeepSeek Harness eDEX-UI shell plugin** — a terminal-inspired by https://github.com/GitSquared/edex-ui overlay for the
-DSH web GUI. Adds a classic eDEX-UI layout: system telemetry left bar, world-map
-right bar, filesystem browser, and a terminal-styled composer input — all wrapped
-around the original UI.
+**WEATHER — a windy.com wind-map command center as a terminal shell.** A DeepSeek
+Harness eDEX-UI theme variant built from a vision analysis of
+[windy.com](https://www.windy.com/) (web-discovered reference, direction
+"weather command center"): Windy's translucent dark-chrome map-app panels,
+amber/gold selection language, and animated wind field re-imagined as an eDEX
+terminal overlay for the DSH web GUI.
 
-![dsh-edex-ui screenshot](packages/bundle/assets/screenshot.png)
+![theme preview](preview.gif)
+
+![dsh-edex-weather-ui screenshot](screenshot.png)
+
+## Theme
+
+| Token | Value | From the reference |
+|---|---|---|
+| Canvas | `#000722` | deep navy map shadow |
+| Chrome (panels/cards/workspace) | `#4d4d4e` | Windy's translucent gray chrome, measured |
+| Primary accent | `#d49500` | amber/gold selection (Go Premium pill, time badge) |
+| Alert red | `#9d0300` | play triangle + hamburger button |
+| Brand red | `#a71c20` | Windy logo circle |
+| Map cyan / blue / green | `#4a94a2` / `#536bae` / `#53a554` | the data field palette |
+| Card chrome | 1px `#6a6a6c` hairline, 10px radius, soft black shadow | the floating panel language |
+
+Active states are **fills, not bars** — the selected layer/model row carries the
+amber fill with dark text, exactly like Windy's ECMWF chip. No glow: depth comes
+from translucency and soft shadows.
 
 ## Features
 
-- **Left bar** — system overview panel: CPU, memory, swap, processes, platform
-  info, and thermal/power state, with per-core CPU sparklines
-- **Right bar** — network status + encom-globe world view with endpoint markers
-  and spline links, plus a dual up/down traffic chart with grid
-- **Top panel** — an empty full-width strip overlaying the shell's top edge
-  above every layer (ready for future chrome)
-- **Bottom panel** — one strip hosting three swappable widgets, each wrapped in
-  the same title/border chrome:
-  - **DIR** — filesystem browser as a terminal-style LIST (icon + name +
-    DIR/FILE), the same width as the left bar, with storage bar
-  - **PREVIEW** — file preview / editor pane (text, code, images), spanning
-    the center region
-  - **TERMINAL** — a real host shell: commands execute through the
-    `systemMetrics.runCommand` Remote (`sh -c`, 30s timeout), with client-side
-    `cd`/`clear`/`help`/`pwd`, ↑/↓ history, and a prompt that follows the
-    filesystem browser until you run your first command
-- **Terminal-styled composer** — flattened input capsule, green block caret, and
-  a `~/<workspace>` path prompt at the left edge of the input area
-- **Workspace-follow** — the dir panel and prompt track the active conversation's
-  workspace; switching sessions navigates both the filesystem browser and the
-  prompt
-- **Green-on-black skin** — token overrides recolour the entire original UI to
-  terminal green, without touching the user's theme preference
+- **WIND MAP (featured)** — replaces the WORLD VIEW globe: a canvas wind-particle
+  field drifting along a seeded flow field over the navy pressure gradient, with
+  the kt color-scale legend, live LINK/PING readout, and a mini forecast timeline
+  (white circular play button + red triangle, amber HH:MM badge, day ticks,
+  blinking playhead)
+- **ATMOSPHERE MODELS** — the forecast-model selector as segmented chips
+  (ECMWF 9KM active amber / GFS 22KM / ICON 13KM / +2) over live per-core
+  sparklines relabeled as model runs, plus real TEMP/MIN/MAX/TASKS and
+  memory/swap block bars
+- **STATION OBSERVATIONS** — the live top-processes table styled as Windy's city
+  station readouts (amber hot values), with the real loadavg footer
+- **CURRENT CONDITIONS** — big thin temperature (real host thermal °C where
+  exposed), condition row from the real power state, sample forecast chips with
+  the amber intensity strips, and real clock/uptime/platform lines
+- **MAP LAYERS** — the layer rail as pill rows (WEATHER RADAR / SATELLITE /
+  **WIND active** / RAIN, THUNDER / TEMPERATURE) with colored layer dots, over
+  the real LINK/INTERFACE/IP/PING lines
+- **WIND PROFILE** — the measured kt legend gradient over the live dual
+  throughput trace (cyan mean, amber gusts)
+- **Bottom strip** — DIR filesystem browser, PREVIEW/editor, and a real host
+  TERMINAL (`systemMetrics.runCommand`), each in the chrome card language
+- **Center workspace** — the original DSH UI framed by a 1px chrome border + the
+  `DSH WORKSPACE` title strip, on the same #4d4d4e chrome surface; never occluded
+- **Workspace chrome** — the sidebar, composer (20px pill input with amber
+  caret), and workspace tree retheme to near-white-on-chrome with amber
+  selection fills, without touching the user's theme preference
 
 ## Installation
 
-The plugin is published to npm as `@danielng23/dsh-edex-ui`. From the harness
-checkout:
+The plugin is published to npm as `@danielng23/dsh-edex-weather-ui`. From the
+harness checkout:
 
 ```sh
-pnpm dsh plugin --profile web add @danielng23/dsh-edex-ui
-pnpm dsh web   # serves the eDEX shell over the default GUI
+DSH_HOME=/tmp/your-dsh-home pnpm dsh plugin --profile web add @danielng23/dsh-edex-weather-ui
 ```
 
-To run the local checkout instead of the npm release (for development), add
-the bundle with a `file:` path — its `file:` dependency specs link the local
-sub-packages:
+Packages:
 
-```sh
-pnpm dsh plugin --profile web add file:/path/to/dsh-edex-ui/packages/bundle
-```
+- `@danielng23/dsh-edex-weather-ui` — the bundle (add this one)
+- `@danielng23/dsh-weather-client-ui-edex` — the shell + widgets client
+- `@danielng23/dsh-weather-client-ui-theme-terminal` — the weather theme row
+- `@danielng23/dsh-weather-host-system-metrics` — the system-metrics Host Remote
 
-See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for the three-instance port
-layout (3080 baseline / 3081 npm / 3083 local), the build, and the iteration
-workflow.
+## Analysis & review
 
-## Development
-
-See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for the full build, install,
-and iteration workflow. The widget architecture for the shell bars is
-documented in [WIDGETS.md](WIDGETS.md).
-
-## Packages
-
-| Package | Host/Client | Description |
-|---|---|---|
-| `packages/bundle` | — | Installable bundle (`cordis.patch.yml`) |
-| `packages/ui-edex` | client | The eDEX shell frame and all panels |
-| `packages/ui-theme-terminal` | client | Appearance → Terminal theme row |
-| `packages/host/system-metrics` | host | System telemetry RPC + file read/write + `runCommand` shell execution |
+- `analysis.json` / `analysis.md` — the vision-derived theme tokens, border
+  language, and widget reconciliation plan
+- `review.md` — the review evidence: computed-style probes, vision zooms, the
+  animation verification, and documented divergences
+- `reference-shot.png` — the captured windy.com reference (1600×900)
 
 ## License
 

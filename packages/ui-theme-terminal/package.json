@@ -1,13 +1,13 @@
 {
-  "name": "@danielng23/dsh-client-ui-theme-terminal",
-  "description": "Terminal (CRT) theme for the web UI: registers a green-on-black alias-token theme and an Appearance row to pick it",
+  "name": "@danielng23/dsh-weather-client-ui-theme-terminal",
+  "description": "WEATHER theme row for the web UI: registers the weather amber alias-token theme and an Appearance row to pick it",
   "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ph4310822/dsh-edex-ui.git",
+    "url": "git+https://github.com/ph4310822/dsh-edex-weather-ui.git",
     "directory": "packages/ui-theme-terminal"
   },
   "type": "module",

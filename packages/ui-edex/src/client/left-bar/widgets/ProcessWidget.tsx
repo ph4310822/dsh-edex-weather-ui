@@ -7,7 +7,7 @@
  * Data stays real (the process sample); only the presentation adopts the
  * reference's station-readout language (dim meta columns, amber values).
  */
-import type { ProcessSample } from '@danielng23/dsh-host-system-metrics/types'
+import type { ProcessSample } from '@danielng23/dsh-weather-host-system-metrics/types'
 import type { LeftWidgetHooks } from '../../widgets/types.ts'
 import css from './ProcessWidget.module.css'
 
