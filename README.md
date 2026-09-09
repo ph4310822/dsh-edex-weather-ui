@@ -65,12 +65,18 @@ harness checkout:
 DSH_HOME=/tmp/your-dsh-home pnpm dsh plugin --profile web add @danielng23/dsh-edex-weather-ui
 ```
 
-Packages:
+Packages (as published to npm):
 
-- `@danielng23/dsh-edex-weather-ui` — the bundle (add this one)
-- `@danielng23/dsh-weather-client-ui-edex` — the shell + widgets client
-- `@danielng23/dsh-weather-client-ui-theme-terminal` — the weather theme row
-- `@danielng23/dsh-weather-host-system-metrics` — the system-metrics Host Remote
+| Package | Version | Role |
+|---|---|---|
+| `@danielng23/dsh-edex-weather-ui` | 0.1.0 | the installable bundle (add this one) |
+| `@danielng23/dsh-weather-client-ui-edex` | 0.1.1 | the shell + widgets client |
+| `@danielng23/dsh-weather-client-ui-theme-terminal` | 0.1.0 | the weather theme row |
+| `@danielng23/dsh-weather-host-system-metrics` | 0.1.1 | the system-metrics Host Remote |
+
+The client and host packages were republished at 0.1.1 to fix stale type-only
+import paths in their emitted `.d.ts` artifacts (runtime was unchanged — see
+[CHANGELOG.md](CHANGELOG.md)). The bundle's `^0.1.0` ranges resolve to them.
 
 ## Analysis & review
 
